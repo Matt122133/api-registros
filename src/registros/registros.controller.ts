@@ -17,6 +17,12 @@ export class RegistrosController {
     return this.registrosService.kmTotales();
   }
 
+  @Get('station')
+  @ApiResponse({ status: 200, description: 'Total de veces que cargue nafta'})
+  cantStation() {
+    return this.registrosService.cantStation();
+  }
+
   @Get()
   @ApiResponse({ status: 200, description: 'Registros obtenidos con éxito'})
   @ApiResponse({ status: 400, description: 'Bad request'})

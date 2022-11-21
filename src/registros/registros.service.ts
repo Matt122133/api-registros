@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 
 import { CreateRegistroDto, UpdateRegistroDto } from './dto';
 
@@ -93,7 +93,23 @@ export class RegistrosService {
 
     const ultimoRegistro = registros[registros.length - 1 ];
 
-    return `la cantidad de km hechos son: ${(ultimoRegistro.km-primerRegistro.km).toFixed(1)}`;
+    return `La cantidad de km hechos son: ${(ultimoRegistro.km-primerRegistro.km).toFixed(1)}`;
+
+  }
+
+  async cantStation() {
+
+    const registros = await this.registrosRepository.find();
+
+    const registrosNo = registros.map(reg => reg.station !== 'No');
+
+    const arrRet = [];
+
+    for ( let i = 0; i < registrosNo.length; i++){
+      if(registrosNo[i]) arrRet.push(registros[i]);
+    }
+
+    return `La cantidad de veces que pusiste nafta son: ${arrRet.length}`;
 
   }
 
