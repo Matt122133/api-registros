@@ -18,6 +18,20 @@ export class RegistrosService {
 
   ) {}
 
+  // función auxiliar que me trae los registros que se les puso nafta ese dia
+  async auxFunction() {
+    const registros = await this.registrosRepository.find();
+
+    const registrosDistNo = registros.map(reg => reg.station !== 'No');
+
+    const arrRet = [];
+
+    for ( let i = 0; i < registrosDistNo.length; i++){
+      if(registrosDistNo[i]) arrRet.push(registros[i]);
+    }
+    return arrRet;
+  }
+
   async create( createRegistroDto: CreateRegistroDto ) {
 
     try {
@@ -99,18 +113,24 @@ export class RegistrosService {
 
   async cantStation() {
 
-    const registros = await this.registrosRepository.find();
-
-    const registrosNo = registros.map(reg => reg.station !== 'No');
-
-    const arrRet = [];
-
-    for ( let i = 0; i < registrosNo.length; i++){
-      if(registrosNo[i]) arrRet.push(registros[i]);
-    }
+    const arrRet = await this.auxFunction();
 
     return `La cantidad de veces que pusiste nafta son: ${arrRet.length}`;
 
+  }
+
+  async plataTotal() {
+    const arrRet = await this.auxFunction();
+
+    let suma = 0;
+
+    arrRet.forEach( reg => {
+      const ret = reg.station;
+      const a = ret.split("$");
+      suma += Number(a[1].split("(", 1));
+    })
+
+    return `Has puesto $${suma} en nafta`;
   }
 
   private handleDBExceptions ( error: any ) {

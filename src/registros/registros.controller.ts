@@ -23,6 +23,12 @@ export class RegistrosController {
     return this.registrosService.cantStation();
   }
 
+  @Get('plataTotal')
+  @ApiResponse({ status: 200, description: 'Total de plata invertida en nafta'})
+  plataTotal() {
+    return this.registrosService.plataTotal();
+  }
+
   @Get()
   @ApiResponse({ status: 200, description: 'Registros obtenidos con éxito'})
   @ApiResponse({ status: 400, description: 'Bad request'})

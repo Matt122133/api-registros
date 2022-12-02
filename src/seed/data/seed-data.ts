@@ -63,7 +63,7 @@ export const initialData: SeedData = {
             day: "7 de octubre 2022",
             km: 4793.1,
             description: "Salida hasta Piriapolis con la familia",
-            station: "Si, llene tanque $3150 (42.68l)",
+            station: "Si, llene $3150 (42.68l)",
         },
         {
             day: "8 de octubre 2022",
@@ -75,7 +75,7 @@ export const initialData: SeedData = {
             day: "10 de octubre 2022",
             km: 4834.5,
             description: "Pase a buscar a buscar a Romi, y después fuimos al Shop",
-            station: "Si, llene el tanque $1550 (20.7l)",
+            station: "Si, llene $1550 (20.7l)",
         },
         {
             day: "12 de octubre 2022",
@@ -189,7 +189,7 @@ export const initialData: SeedData = {
             day: "23 de noviembre 2022",
             km: 5385.5,
             description: "Fui a la casa de Romi",
-            station: "Se, puse $500 (6.67l)",
+            station: "Si, puse $500 (6.67l)",
         },
         {
             day: "24 de noviembre 2022",
