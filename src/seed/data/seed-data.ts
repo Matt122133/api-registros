@@ -179,5 +179,47 @@ export const initialData: SeedData = {
             description: "Romi fue a la peluquería, y después levante los acolchados",
             station: "No",
         },
+        {
+            day: "20 de noviembre 2022",
+            km: 5372.5,
+            description: "Fui a la casa de Romi",
+            station: "No",
+        },
+        {
+            day: "23 de noviembre 2022",
+            km: 5385.5,
+            description: "Fui a la casa de Romi",
+            station: "Se, puse $500 (6.67l)",
+        },
+        {
+            day: "24 de noviembre 2022",
+            km: 5397.8,
+            description: "Lleve a Romi a la casa",
+            station: "No",
+        },
+        {
+            day: "27 de noviembre 2022",
+            km: 5413.2,
+            description: "Fui a ver a Romi",
+            station: "No",
+        },
+        {
+            day: "29 de noviembre 2022",
+            km: 5547.9,
+            description: "Fuimos al cumple de Anto en parque del plata",
+            station: "Si, Romi puso $1000 (13.35l)",
+        },
+        {
+            day: "30 de noviembre 2022",
+            km: 5581.1,
+            description: "Le compre la pipa a papa y también fuimos al shop por ropa para Romi",
+            station: "Si, llene $2800 (37.39l)",
+        },
+        {
+            day: "1 de diciembre 2022",
+            km: 5594.1,
+            description: "Lleve a Romi a la casa",
+            station: "No",
+        },
     ]
 }
