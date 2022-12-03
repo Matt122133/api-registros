@@ -37,7 +37,7 @@ export class Registro {
     description: string;
 
     @ApiProperty({
-        example: 'Si, puse $500 (6.67l)',
+        example: 'Si',
         description: 'Si en este registro se puso nafta o no'
     })
     @Column('text',{
@@ -45,6 +45,31 @@ export class Registro {
     })
     station: string;
 
+    @ApiProperty({
+        example: '500',
+        description: 'La plata que se puso para cargar nafta'
+    })
+    @Column('float',{
+        default: 0,
+    })
+    price: number;
 
+    @ApiProperty({
+        example: '6.67',
+        description: 'Son los litros de nafta puestos en este registro'
+    })
+    @Column('float',{
+        default: 0,
+    })
+    liters: number;
+
+    @ApiProperty({
+        example: 'Romi',
+        description: 'Es la persona que puso nafta en este registro'
+    })
+    @Column('text',{
+        default: 'Yo',
+    })
+    who: string;
 
 }

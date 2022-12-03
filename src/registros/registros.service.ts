@@ -22,7 +22,7 @@ export class RegistrosService {
   async auxFunction() {
     const registros = await this.registrosRepository.find();
 
-    const registrosDistNo = registros.map(reg => reg.station !== 'No');
+    const registrosDistNo = registros.map(reg => reg.station === 'Si');
 
     const arrRet = [];
 
@@ -54,7 +54,17 @@ export class RegistrosService {
 
     //ordenar los registros mediante su km, el mas chico al inicio y el mas grande al final
     registros.sort((a,b)=> a.km - b.km);
-    return registros;
+    const arrRet = [];
+
+    for( let i = 0; i< registros.length - 1; i++){
+      if( registros[i].station === 'No'){
+        const { price, liters, who, ...properties} = registros[i]
+        arrRet.push({...properties});
+      } else {
+        arrRet.push(registros[i]);
+      }
+    }
+    return arrRet;
 
   }
 
@@ -62,9 +72,17 @@ export class RegistrosService {
 
       const registro = await this.registrosRepository.findOne({ where: { id }});
 
-      if ( !registro ) throw new NotFoundException(`No se encontró el registro con id: ${id} `);
+      if ( !registro ) throw new NotFoundException(`No se encontró el registro con id: ${ id } `);
+      let reg = {};
 
-      return registro;
+      if( registro.station === 'No'){
+        const { price, liters, who, ...properties} = registro
+        reg = { ...properties };
+      } else {
+        reg = registro;
+      }
+
+      return reg;
 
   }
 
@@ -107,7 +125,7 @@ export class RegistrosService {
 
     const ultimoRegistro = registros[registros.length - 1 ];
 
-    return `La cantidad de km hechos son: ${(ultimoRegistro.km-primerRegistro.km).toFixed(1)}`;
+    return `La cantidad de km hechos son: ${ (ultimoRegistro.km-primerRegistro.km).toFixed(1) }`;
 
   }
 
@@ -115,22 +133,22 @@ export class RegistrosService {
 
     const arrRet = await this.auxFunction();
 
-    return `La cantidad de veces que pusiste nafta son: ${arrRet.length}`;
+    return `La cantidad de veces que pusiste nafta son: ${ arrRet.length }`;
 
   }
 
   async plataTotal() {
     const arrRet = await this.auxFunction();
 
-    let suma = 0;
+    let sumaTotal = 0;
+    let sumaWho = 0;
 
     arrRet.forEach( reg => {
-      const ret = reg.station;
-      const a = ret.split("$");
-      suma += Number(a[1].split("(", 1));
-    })
+      if ( reg.who !== 'Yo') sumaWho += Number(reg.price);
+        sumaTotal += Number(reg.price);
+    });
 
-    return `Has puesto $${suma} en nafta`;
+    return `Has puesto $${ sumaTotal } en nafta, de los cuales $${ sumaWho } no los pusiste vos`;
   }
 
   private handleDBExceptions ( error: any ) {

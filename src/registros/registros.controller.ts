@@ -17,7 +17,7 @@ export class RegistrosController {
     return this.registrosService.kmTotales();
   }
 
-  @Get('station')
+  @Get('cantStation')
   @ApiResponse({ status: 200, description: 'Total de veces que cargue nafta'})
   cantStation() {
     return this.registrosService.cantStation();

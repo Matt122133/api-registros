@@ -34,4 +34,28 @@ export class UpdateRegistroDto extends PartialType(CreateRegistroDto) {
     @IsString()
     @IsOptional()
     station: string;
+
+    @ApiProperty({
+        description: 'La plata que se puso para cargar nafta'
+    })
+    @IsNumber()
+    @IsPositive()
+    @IsOptional()
+    price: number;
+
+    @ApiProperty({
+        description: 'Son los litros de nafta puestos en este registro'
+    })
+    @IsNumber()
+    @IsPositive()
+    @IsOptional()
+    liters: number;
+
+    @ApiProperty({
+        description: 'Es la persona que puso nafta en este registro'
+    })
+    @IsString()
+    @IsOptional()
+    who: string;
+
 }

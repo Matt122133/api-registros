@@ -17,8 +17,8 @@ async function bootstrap() {
 
   //esto es necesario para que se cree la documentación de swagger
   const config = new DocumentBuilder()
-    .setTitle('Registro RESTAPI v1')
-    .setDescription('ApiRegistro documentation')
+    .setTitle('API-REGISTRO')
+    .setDescription('Es una API para llevar el conteo de km realizados a tu auto. Podes ingresar cuando pasas por la estación y luego saber cuantas veces y cuanto has invertido.')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
