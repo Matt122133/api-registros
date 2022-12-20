@@ -125,8 +125,22 @@ export class RegistrosService {
 
     const ultimoRegistro = registros[registros.length - 1 ];
 
-    return `La cantidad de km hechos son: ${ (ultimoRegistro.km-primerRegistro.km).toFixed(1) }`;
+    return `La cantidad de km hechos son: ${ (ultimoRegistro.km - primerRegistro.km).toFixed(1) }`;
 
+  }
+
+  async promedio() {
+
+    let suma = 0;
+    const regNafta = await this.auxFunction();
+    regNafta.forEach(reg => suma += reg.liters );
+
+    const registros = await this.registrosRepository.find();
+    const primerRegistro = registros[0];
+    const ultimoRegistro = registros[registros.length -1 ];
+    const kmTotales = (ultimoRegistro.km - primerRegistro.km).toFixed(0);
+
+    return `Tu promedio es: ${ (Number(kmTotales)/suma).toFixed(1) } km/l`;
   }
 
   async cantStation() {

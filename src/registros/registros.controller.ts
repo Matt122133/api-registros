@@ -11,6 +11,12 @@ import { Registro } from './entities/registro.entity';
 export class RegistrosController {
   constructor(private readonly registrosService: RegistrosService) {}
 
+  @Get('promedio')
+  @ApiResponse({ status: 200, description: 'Total de km'})
+  promedio() {
+    return this.registrosService.promedio();
+  }
+
   @Get('total')
   @ApiResponse({ status: 200, description: 'Total de km'})
   kmTotales() {
