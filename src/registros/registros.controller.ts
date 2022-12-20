@@ -12,7 +12,7 @@ export class RegistrosController {
   constructor(private readonly registrosService: RegistrosService) {}
 
   @Get('promedio')
-  @ApiResponse({ status: 200, description: 'Total de km'})
+  @ApiResponse({ status: 200, description: 'Promedio de km/l'})
   promedio() {
     return this.registrosService.promedio();
   }
